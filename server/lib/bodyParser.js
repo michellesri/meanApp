@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
   let body = '';
-  res.on('data', (chunk) => body += chunk);
-  res.on('end', () => {
+  req.on('data', (chunk) => body += chunk);
+  req.on('end', () => {
     try {
       req.body = JSON.parse(body);
       next();
@@ -10,3 +10,5 @@ module.exports = (req, res, next) => {
     }
   });
 };
+
+
