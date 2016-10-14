@@ -12,7 +12,7 @@ app.use(logger);
 //prints information about the request object for every request.
 
 const places = require('../routes/places');
-app.use('/api/place', places);
+app.use('/api/places', places);
 
 // make error handler here because the express app is here.
 app.use((err, req, res, next) => {

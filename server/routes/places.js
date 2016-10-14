@@ -11,8 +11,8 @@ const bodyParser = require('body-parser').json();
 //my api is defined as the routes and what they do:
 module.exports = router
   .get('/', (req,res,next) => {
-    Place.find() //returns a promise
-    .lean() //mongoose method
+    Place.find() //returns a promise that then returns an array.
+    .lean() //mongoose method. cuts out mongoose methods
     .then(data => res.json(data)) //handle the promise. data is the result of the query/
     .catch(next); //next is express error handler that is provided from express
   })
@@ -24,7 +24,7 @@ module.exports = router
   })
   .post('/', bodyParser, (req, res, next) => {
     new Place(req.body)
-    .save()
+    .save() //returns a promise because the data is sent back with an id that wasn't previous there
     .then(result => res.json(result))
     .catch(next);
   })
